@@ -1,0 +1,12 @@
+{
+  "name": "node-pulseaudio-dbus",
+  "version": "0.0.1",
+  "description": "the easy way to control pulseaudio via dbus",
+  "main": "index.js",
+  "author": "Adam Avramov <fallenblood@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "dbus-native": "^0.1.1",
+    "deasync": "0.0.7"
+  }
+}
