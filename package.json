@@ -8,5 +8,8 @@
   "dependencies": {
     "dbus-native": "^0.1.1",
     "deasync": "0.0.7"
+  },
+  "devDependencies": {
+    "xml2js": "^0.4.4"
   }
 }
