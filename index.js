@@ -8,9 +8,11 @@ var
   detect = require('./lib/detect'),
   Client = require('./lib/client');
 
-var
-  pulse = new Client(detect.parse(detect.detectSync()));
 
-console.log("pulse", pulse);
+var pulse = new Client();
 
-console.log("iface", pulse.getInterface("org.PulseAudio.Core1"))
+
+console.log(pulse);
+
+
+//console.log("iface", pulse.getInterface("org.PulseAudio.Core1"))
