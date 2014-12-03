@@ -6,7 +6,7 @@
   "author": "Adam Avramov <fallenblood@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "dbus-native": "^0.1.1",
+    "dbus-native": "git+https://git@github.com/sidorares/node-dbus.git",
     "deasync": "0.0.7"
   },
   "devDependencies": {
