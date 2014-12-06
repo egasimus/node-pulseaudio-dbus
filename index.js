@@ -18,6 +18,16 @@ pulse.on(
         function (err, res) {
           console.log(pulse)
           console.log(res);
+          console.log("INVOKING");
+          pulse.service.bus.invoke(
+            { path:        res.service.name,
+              interface:   'org.freedesktop.DBus.Properties',
+              member:      'Set',
+              signature:   'ssv',
+              body:        ['org.PulseAudio.Core1.Stream',
+                            'Mute', ['b', 1]] },
+            function (err, res) {
+              console.log(err, res)})
         });
   }
 ).on(
