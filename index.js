@@ -4,30 +4,21 @@ var PulseAudio = require('./lib/client');
 var pulse = new PulseAudio();
 
 
-var trace = function () { console.log(arguments); }
+var trace = function () { console.log("\nTRACE");
+                          console.log(arguments); }
+
+
+pulse.get('org.PulseAudio.Core1', 'Hostname', function (err, res) { console.log(err, res) });
 
 
 pulse.on(
   'NewPlaybackStream',
   function (path, args, sig) {
     var
-      stream_path = args[0],
-      stream      = pulse.service.bus.getObject(
-        stream_path,
-        'org.PulseAudio.Core1.Stream',
+      stream = pulse.getStream(
+        args[0],
         function (err, res) {
-          console.log(pulse)
-          console.log(res);
-          console.log("INVOKING");
-          pulse.service.bus.invoke(
-            { path:        res.service.name,
-              interface:   'org.freedesktop.DBus.Properties',
-              member:      'Set',
-              signature:   'ssv',
-              body:        ['org.PulseAudio.Core1.Stream',
-                            'Mute', ['b', 1]] },
-            function (err, res) {
-              console.log(err, res)})
+          res.set('org.PulseAudio.Core1.Stream', 'Mute', ['b', 1], function () {});
         });
   }
 ).on(
