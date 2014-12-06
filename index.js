@@ -1,19 +1,16 @@
-var
-  net       = require('net'),
-  dbus      = require('dbus-native'),
-  handshake = require('dbus-native/lib/handshake'),
-  events    = require('events');
-
-var
-  detect = require('./lib/detect'),
-  Client = require('./lib/client');
+var PulseAudio = require('./lib/client');
 
 
-var pulse = new Client();
+var pulse = new PulseAudio();
 
 
-console.log();
-console.log(pulse);
+var trace = function () { console.log(arguments); }
 
 
-//console.log("iface", pulse.getInterface("org.PulseAudio.Core1"))
+pulse.on(
+  'NewPlaybackStream',
+  trace
+).on(
+  'PlaybackStreamRemoved',
+  trace
+);
