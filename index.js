@@ -8,7 +8,7 @@ var trace = function () { console.log("\nTRACE");
                           console.log(arguments); }
 
 
-pulse.get('org.PulseAudio.Core1', 'Hostname', function (err, res) { console.log(err, res) });
+pulse.get('org.PulseAudio.Core1', 'Hostname', trace);
 
 
 pulse.on(
@@ -17,8 +17,16 @@ pulse.on(
     var
       stream = pulse.getStream(
         args[0],
-        function (err, res) {
-          res.set('org.PulseAudio.Core1.Stream', 'Mute', ['b', 1], function () {});
+        function (err, stream) {
+
+          stream.mute = true; 
+
+          stream.get(
+            'org.PulseAudio.Core1.Stream',
+            'PropertyList',
+            function (err, res)
+            { console.log(res[1][0]) });
+
         });
   }
 ).on(
